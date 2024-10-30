@@ -45,6 +45,39 @@ router.get('/', (req, res, next) => {
     .catch((err) => next(err));
 });
 
+/**
+ * @swagger
+ * /users/count:
+ *   get:
+ *     summary: Récupérer le nombre total d'utilisateurs
+ *     description: Retourne le nombre total d'utilisateurs enregistrés dans la base de données.
+ *     responses:
+ *       200:
+ *         description: Succès - Le nombre d'utilisateurs a été récupéré avec succès.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 count:
+ *                   type: integer
+ *       500:
+ *         description: Erreur serveur - Impossible de récupérer le nombre d'utilisateurs.
+ */
+router.get('/count', async (req, res, next) => {
+  try {
+    const userCount = await User.countDocuments({});
+    res.status(200).json({ count: userCount });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ 
+      success: false, 
+      status: 'Une erreur s\'est produite lors de la récupération du nombre d\'utilisateurs.' 
+    });
+  }
+});
+
+
 
 /**
  * @swagger

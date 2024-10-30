@@ -76,4 +76,30 @@ registerActivityRouter.route('/:categorieId')
     .catch((err) => next(err));
 });
 
+// Route pour récupérer toutes les RegisterActivity avec le status "true"
+registerActivityRouter.route('/status/true')
+.get((req, res, next) => {
+    RegisterActivity.find({ status: true })
+    .populate('activitySimphat')
+    .then((activities) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(activities);
+    })
+    .catch((err) => next(err));
+});
+
+// Route pour récupérer toutes les RegisterActivity avec le status "false"
+registerActivityRouter.route('/status/false')
+.get((req, res, next) => {
+    RegisterActivity.find({ status: false })
+    .populate('activitySimphat')
+    .then((activities) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(activities);
+    })
+    .catch((err) => next(err));
+});
+
 module.exports = registerActivityRouter;
