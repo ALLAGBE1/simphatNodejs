@@ -11,6 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var activitySimphatRouter = require('./routes/activitySimphatRouter');
 var registerActivityRouter = require('./routes/registerActivityRouter');
+const paymentRouter = require('./routes/paymentRouter');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
@@ -37,6 +38,7 @@ app.use('/users', usersRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/activitySimphat', activitySimphatRouter);
 app.use('/registerActivity', registerActivityRouter);
+app.use('/payment', paymentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

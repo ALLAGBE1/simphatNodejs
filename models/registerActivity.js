@@ -18,6 +18,10 @@ const registerActivitySchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ActivitySimphat',
         required: true
+    },
+    status: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true

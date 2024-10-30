@@ -11,7 +11,7 @@ var User = new Schema({
     },
     admin: {
       type: Boolean,
-      default: false
+      default: true
     },
     number: {
       type: Number,
