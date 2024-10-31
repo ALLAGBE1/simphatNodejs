@@ -322,10 +322,7 @@ router.post('/login', (req, res, next) => {
       }
 
       var token = authenticate.getToken({ _id: req.user._id });
-
-      // const { _id, name, username, admin, email, default_currency, crypto, key_word, codeVerify, __v } = user;
-      // const sanitizedUser = { _id, name, username, admin, email, default_currency, crypto, key_word, codeVerify, __v };
-
+      
       const { _id, name, admin, email, number, codeVerify, __v } = user;
       const sanitizedUser = { _id, name, admin, email, number, codeVerify, __v };
 
