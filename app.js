@@ -4,17 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
-var authenticate = require('../authenticate');
-const connect = require('../db');
+var authenticate = require('./authenticate');
+const connect = require('./db');
 
-var indexRouter = require('../routes/index');
-var usersRouter = require('../routes/users');
-var activitySimphatRouter = require('../routes/activitySimphatRouter');
-var registerActivityRouter = require('../routes/registerActivityRouter');
-const paymentRouter = require('../routes/paymentRouter');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var activitySimphatRouter = require('./routes/activitySimphatRouter');
+var registerActivityRouter = require('./routes/registerActivityRouter');
+const paymentRouter = require('./routes/paymentRouter');
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('../swagger');
+const swaggerSpec = require('./swagger');
 
 const cors = require('cors');
 
