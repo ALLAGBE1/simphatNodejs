@@ -6,5 +6,5 @@
   "routes": [
     { "src": "/(.*)", "dest": "app.js" }
   ],
-  "installCommand": "yarn install"
+  "installCommand": "npm install"
 }
