@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -16,9 +17,18 @@ const paymentRouter = require('./routes/paymentRouter');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger');
 
+
 const cors = require('cors');
 
 var app = express();
+// Configuration de session
+app.use(session({
+  secret: '111222111333',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
 app.use(cors());
 
 app.use(passport.initialize()); 

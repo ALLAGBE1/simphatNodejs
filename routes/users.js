@@ -17,6 +17,7 @@ var router = express.Router();
 router.use(bodyParser.json());
 
 
+
 /**
  * @swagger
  * /users:
@@ -125,7 +126,7 @@ router.post('/register', async (req, res, next) => {
   try {
     console.log("555555555555555555555555555555555555555");
     
-    if (!req.body.number || req.body.number.toString().trim() === '') {
+    if (!req.body.number || req.body.number.trim() === '') {
       throw new Error('Le numéro est requis.');
     }
 
@@ -291,7 +292,7 @@ router.post('/register', async (req, res, next) => {
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err);
-
+    
     if (!user) {
       res.statusCode = 401;
       res.setHeader('Content-Type', 'application/json');
@@ -322,7 +323,8 @@ router.post('/login', (req, res, next) => {
       }
 
       var token = authenticate.getToken({ _id: req.user._id });
-      
+
+
       const { _id, name, admin, email, number, codeVerify, __v } = user;
       const sanitizedUser = { _id, name, admin, email, number, codeVerify, __v };
 
@@ -339,6 +341,67 @@ router.post('/login', (req, res, next) => {
     });
   })(req, res, next);
 });
+// router.post('/login', (req, res, next) => {
+//   console.log('Reception de requête de connexion');
+
+//   passport.authenticate('local', (err, user, info) => {
+//     console.log('Authentification en cours...');
+//     if (err) {
+//       console.error('Erreur lors de l\'authentification:', err);
+//       return next(err);
+//     }
+    
+//     if (!user) {
+//       console.log('Echec de l\'authentification');
+//       res.status(401).json({
+//         success: false,
+//         status: 'Connexion échouée !',
+//         err: info || "Utilisateur non trouvé",
+//       });
+//       return;
+//     }
+
+//     req.logIn(user, (err) => {
+//       console.log('Connexion réussie');
+//       if (err) {
+//         console.error('Erreur lors de la connexion:', err);
+//         res.status(401).json({
+//           success: false,
+//           status: 'Connexion échouée !',
+//           err: "Impossible de connecter l'utilisateur !",
+//         });
+//         return;
+//       }
+
+//       const token = authenticate.getToken({ _id: req.user._id });
+
+//       const { _id, name, admin, email, number, codeVerify, __v } = user;
+//       const sanitizedUser = { _id, name, admin, email, number, codeVerify, __v };
+
+//       res.json({
+//         success: true,
+//         status: 'Connexion réussie !',
+//         token: token,
+//         user: sanitizedUser,
+//       });
+//     });
+//   })(req, res, next);
+// });
+
+// router.post('/login', passport.authenticate('local'), (req, res) => {
+//   const token = authenticate.getToken({ _id: req.user._id });
+  
+//   const { _id, name, admin, email, number, codeVerify, __v } = req.user;
+//   const sanitizedUser = { _id, name, admin, email, number, codeVerify, __v };
+
+//   res.json({
+//     success: true,
+//     status: 'Connexion réussie !',
+//     token: token,
+//     user: sanitizedUser,
+//   });
+// });
+
 
 
 async function sendResetPasswordEmail(userEmail, userName, verificationCode) {

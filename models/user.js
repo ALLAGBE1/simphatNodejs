@@ -14,7 +14,7 @@ var User = new Schema({
       default: false
     },
     number: {
-      type: Number,
+      type: String,
       unique: true, 
       required: true 
     },
