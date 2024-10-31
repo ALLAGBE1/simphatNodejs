@@ -30,6 +30,6 @@
     "uglify-js": "^3.19.3"
   },
   "engines": {
-  "node": "20.x"
-}
+    "node": "20.x"
+  }
 }
